@@ -2,6 +2,7 @@
 # usage: bin/compile <build-dir> <cache-dir> <env-dir>
 
 set -eo pipefail
+set -x
 
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
@@ -309,6 +310,10 @@ case ${TOOL} in
     glide)
         # Do this before setupGOPATH as we need ${name} set first
         cd "${build}"
+        echo "HERE I AM LOL"
+        ls
+        cat glide.yaml
+        glide name
         name=$(glide name 2>/dev/null)
 
         eval "$(setupGOPATH ${name})"
